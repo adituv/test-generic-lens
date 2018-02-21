@@ -10,7 +10,7 @@ While I can simulate that for a single generated file in Haskell, resolving
 conflicting names is still messy (though it is possible with the extension
 DuplicateRecordFields).  Further, I wanted to provide an object-like API via
 lenses which cannot be resolved the same way.  It might be possible using
-`[makeFieldsNoPrefix][hck-mfnp]` but that would still fail in the presence of
+[`makeFieldsNoPrefix`][hck-mfnp] but that would still fail in the presence of
 identically named fields from several packages.
 
 I had given up hope and was going to just leave the user to choose how to
@@ -24,3 +24,6 @@ conflict with any other instance of IsLabel for any type congruent with the
 van Laarhoven encoding of lenses (the encoding used by both the `lens` and
 `microlens` libraries, among others).  Well, and the `#` from the
 OverloadedLabels syntax but that's not too big a deal.
+
+[stck-gl]: https://www.stackage.org/package/generic-lens
+[hck-mfnp]: https://hackage.haskell.org/package/lens-4.16/docs/Control-Lens-TH.html#v:makeFieldsNoPrefix
