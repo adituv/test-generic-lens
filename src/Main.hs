@@ -1,9 +1,17 @@
+{-# LANGUAGE CPP #-}
 {-# LANGUAGE DataKinds #-}
-{-# LANGUAGE TypeApplications #-}
+{-# LANGUAGE OverloadedLabels #-}
+{-# LANGUAGE PackageImports #-}
 module Main where
 
 import A
 import B
+
+#if MIN_VERSION_generic_lens(0,5,2)
+import "generic-lens" Data.Generics.Labels
+#else
+import Data.Generics.Labels
+#endif
 
 import Data.Generics.Product
 import Lens.Micro
@@ -16,6 +24,6 @@ sampleB = TypeB 2 "typeB" 'x'
 
 main :: IO ()
 main = do
-  print $ sampleA ^. field @"uniqueFieldA"
-  print $ sampleB ^. field @"duplicateField"
-  print $ sampleB ^. field @"uniqTypeField"
+  print $ sampleA ^. #uniqueFieldA
+  print $ sampleB ^. #duplicateField
+  print $ sampleB ^. #uniqTypeField
